@@ -1,0 +1,29 @@
+/* Styles complementaires a Bootstrap : design epure. */
+
+body {
+    min-height: 100vh;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Cartes statistiques de la page d'accueil */
+.card .display-5 {
+    line-height: 1.1;
+}
+
+/* Tableaux : en-tete plus lisible sur mobile */
+.table > thead th {
+    white-space: nowrap;
+}
+
+/* Adoucit les coins des cartes */
+.card {
+    border-radius: .6rem;
+}
+
+footer {
+    border-top: 1px solid #e9ecef;
+    margin-top: 2rem;
+}

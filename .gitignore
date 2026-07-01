@@ -1,0 +1,9 @@
+# Configuration sensible : jamais versionnee, jamais deployee
+/config/config.php
+
+# Fichiers systeme / editeurs
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
