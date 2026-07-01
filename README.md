@@ -13,6 +13,7 @@ A light, easy to understand, web tools that make the internship management way e
 
 This tool features a lightweight, intuitive interface allowing users to easily manage and edit both internship records and company profiles.
 
+> [!TIP]
 > Everything can be modified, the code is open source and easily accessible
 > If the feature is not to your liking be sure to check the [Code structure](#⚙️-Code-Structure) in the Readme.
 
@@ -33,7 +34,24 @@ If you are not a **Student** you are allowed and able to access your account inf
 
 ## ⚙️ Code Structure
 
-# How to modify the roles access
+> [!NOTE]
+>Built exclusively with vanilla PHP, the application features a custom routing system developed entirely from scratch. 
+
+The code snippet below illustrates how routes are registered and made accessible to users:
+
+```php
+// index.php
+$router->add('login', 'AuthController', 'login');
+$router->add('home' , 'HomeController', 'index', ['admin', 'prof', 'eleve']);
+```
+
+Calling the `add()` method registers a new route within the application. If a user attempts to access a page or URI that has not been explicitly declared in the Router, the system will automatically return a **404 Not Found** error.
+
+The `add()` method accepts up to four parameters:
+* **`$name` (string):** The URL path/slug displayed in the browser's address bar.
+* **`$controller` (string):** The specific controller class responsible for handling the request.
+* **`$action` (string):** The method inside the controller that will be executed.
+* **`$roles` (array, optional):** An array defining which user roles (e.g., `['admin', 'prof']`) are authorized to access this route. If omitted, the route is public.
 
 ## 📝 Author
 
