@@ -58,4 +58,8 @@ $router->add('user_edit',   'UserController', 'edit',    ['admin']);
 $router->add('user_update', 'UserController', 'update',  ['admin']);
 $router->add('user_delete', 'UserController', 'destroy', ['admin']);
 
+//--- Configuration : administrateur uniquement ---
+$router->add('config',        'ConfigController', 'index', ['admin']);
+$router->add('config_update', 'ConfigController', 'update', ['admin']);
+
 $router->dispatch();

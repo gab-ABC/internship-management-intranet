@@ -20,7 +20,7 @@
         <div class="col-12 col-sm-10 col-md-6 col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body p-4">
-                    <h1 class="h4 text-center mb-1">🎓 Stages Jean Rostand</h1>
+                    <h1 class="h4 text-center mb-1">🎓 Stages <?= e($nom_etablissement) ?></h1>
                     <p class="text-center text-muted small mb-4">Connectez-vous pour continuer</p>
 
                     <?php if (!empty($error)): ?>

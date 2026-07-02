@@ -3,6 +3,8 @@ namespace App\Core;
 
 defined('APP_RUNNING') or exit('Acces direct interdit.');
 
+use App\Models\Etablissement;
+
 /**
  * Controleur de base : fournit le rendu des vues avec le gabarit commun.
  */
@@ -18,6 +20,7 @@ abstract class Controller
     {
         extract($data, EXTR_SKIP);
         $viewFile = SRC_PATH . '/Views/' . $view . '.php';
+        $nom_etablissement = Etablissement::getEtablissementName();
 
         if (!is_file($viewFile)) {
             http_response_code(500);

@@ -6,6 +6,7 @@ defined('APP_RUNNING') or exit('Acces direct interdit.');
 use App\Core\Controller;
 use App\Core\Auth;
 use App\Models\User;
+use App\Models\Etablissement;
 
 /**
  * Connexion, deconnexion et changement de mot de passe personnel.
@@ -82,6 +83,7 @@ class AuthController extends Controller
     private function renderLogin(string $error = ''): void
     {
         $viewFile = SRC_PATH . '/Views/auth/login.php';
+        $nom_etablissement = Etablissement::getEtablissementName();
         require $viewFile;
     }
 }
