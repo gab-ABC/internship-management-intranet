@@ -32,6 +32,47 @@ The application includes **7 main navigation links**, each leading to a dedicate
 You can direcly in the website create, modify and delete : **internships**, **companies**, **teachers**
 If you are not a **Student** you are allowed and able to access your account info and change your password.
 
+## 💡 Requirements
+
+Like most projects, this application has a few system requirements necessary to run locally or in production.
+
+### 1. Web Server Installation
+
+We will set up a standard **LAMP** (Linux, Apache, MariaDB, PHP) stack:
+
+```bash
+# Debian, Ubuntu
+sudo apt install apache2 php libapache2-mod-php mariadb-server php-mysql
+sudo apt install php-curl php-gd php-intl php-json php-mbstring php-xml php-zip
+```
+```bash
+# Arch Linux
+sudo pacman -Syu apache php php-apache mariadb
+```
+
+> [!NOTE]
+> While these instructions focus on Linux environments, the application can also be run on Windows and macOS by installing the corresponding PHP extensions and server environments (e.g., via XAMPP, MAMP, or Docker).
+
+### 2. Database Management Tool
+
+For database administration, tools like PhpMyAdmin or Adminer (a lightweight alternative) are highly recommended.
+
+```bash
+# Debian, Ubuntu
+sudo apt install phpmyadmin
+```
+```bash
+# Arch Linux
+sudo pacman -S phpmyadmin
+
+# PHP Configuration
+sudo nvim /etc/php/php.ini
+# Ensure the following extensions are enabled:
+# extension=mysqli
+# extension=iconv
+```
+Once installed and configured, you can access the database management interface by navigating to: http://localhost/phpmyadmin
+
 ## ⚙️ Code Structure
 
 > [!NOTE]
