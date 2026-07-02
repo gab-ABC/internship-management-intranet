@@ -30,7 +30,6 @@
                 <li class="nav-item"><a class="nav-link" href="<?= url('entreprises') ?>">Entreprises</a></li>
                 <?php if (can_edit()): ?>
                     <li class="nav-item"><a class="nav-link" href="<?= url('profs') ?>">Professeurs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= url('stage_create') ?>">Ajouter un stage</a></li>
                 <?php endif; ?>
                 <?php if (is_admin()): ?>
                     <li class="nav-item"><a class="nav-link" href="<?= url('users') ?>">Utilisateurs</a></li>
