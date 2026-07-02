@@ -18,7 +18,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid px-4">
-        <a class="navbar-brand" href="<?= url('home') ?>">🎓 Stages Jean Rostand</a>
+        <a class="navbar-brand" href="<?= url('home') ?>">🎓 Stages <?= e($nom_etablissement) ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainnav"
                 aria-controls="mainnav" aria-expanded="false" aria-label="Menu">
             <span class="navbar-toggler-icon"></span>
@@ -75,7 +75,7 @@
 </main>
 
 <footer class="text-center text-muted py-4 small">
-    Lycee Jean Rostand &middot; Roubaix &mdash; Gestion de l'historique des stages
+    <?= e($nom_etablissement) ?> &middot; Roubaix &mdash; Gestion de l'historique des stages
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
