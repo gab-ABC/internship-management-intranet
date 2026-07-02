@@ -21,6 +21,7 @@ class ConfigController extends Controller
         $this->render('config/index', 
         [
             "nom" => Etablissement::getEtablissementName(),
+            "ville" => Etablissement::getEtablissementCity(),
             "errors"=> [],
         ], "Configuration");
     }
@@ -28,8 +29,14 @@ class ConfigController extends Controller
     public function update()
     {
         $nom = trim($_POST['nom_etablissement'] ?? '');
-        
-        Etablissement::setEtablissementName($nom);
+        $ville = trim($_POST['ville_etablissement'] ?? '');
+
+        if (!empty($nom)) {
+            Etablissement::setEtablissementName($nom);
+        }
+        if (!empty($ville)) {
+            Etablissement::setEtablissementCity($ville);
+        }
         redirect('home');
     }
 }

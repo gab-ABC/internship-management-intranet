@@ -75,7 +75,7 @@
 </main>
 
 <footer class="text-center text-muted py-4 small">
-    <?= e($nom_etablissement) ?> &middot; Roubaix &mdash; Gestion de l'historique des stages
+    <?= e($nom_etablissement) ?> &middot; <?= e($ville_etablissement) ?? 'Ville non définie' ?> &mdash; Gestion de l'historique des stages
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
