@@ -1,5 +1,6 @@
 # Configuration sensible : jamais versionnee, jamais deployee
 /config/config.php
+/sql
 
 # Fichiers systeme / editeurs
 .DS_Store
