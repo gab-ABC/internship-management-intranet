@@ -45,6 +45,9 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                         <?php if (can_edit()): ?>
                             <li><a class="dropdown-item" href="<?= url('account') ?>">Mon compte</a></li>
+                            <?php if (is_admin()): ?>
+                                <li><a class="dropdown-item" href="<?= url('config') ?>">Configuration du site</a></li>
+                            <?php endif; ?>
                             <li><hr class="dropdown-divider"></li>
                         <?php endif; ?>
                         <li>
