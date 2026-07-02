@@ -21,6 +21,7 @@ abstract class Controller
         extract($data, EXTR_SKIP);
         $viewFile = SRC_PATH . '/Views/' . $view . '.php';
         $nom_etablissement = Etablissement::getEtablissementName();
+        $ville_etablissement = Etablissement::getEtablissementCity();
 
         if (!is_file($viewFile)) {
             http_response_code(500);
