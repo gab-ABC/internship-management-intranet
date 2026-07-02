@@ -15,13 +15,13 @@
 </div>
 
 <div class="card card-body" style="max-width:640px">
-    <h2 class="h5">Changer mon mot de passe</h2>
-    <form method="post" action="<?= url('config_update') ?>" class="card card-body" style="max-width:640px">
+    <h2 class="h5">Changer la configuration du site</h2>
+    <form method="post" action="<?= url('config_update') ?>">
         <?= \App\Core\Csrf::field() ?>
 
         <div class="mb-3">
             <label class="form-label">Nom de l'établissement</label>
-            <input type="text" name="username" class="form-control">
+            <input type="text" name="nom_etablissement" class="form-control">
         </div>
 
         <div class="d-flex gap-2">

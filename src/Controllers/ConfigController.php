@@ -27,9 +27,9 @@ class ConfigController extends Controller
 
     public function update()
     {
-        $id  = (int) $_POST['id'] ?? 0;
-        $nom = trim($_POST['nom'] ?? '');
+        $nom = trim($_POST['nom_etablissement'] ?? '');
         
         Etablissement::setEtablissementName($nom);
+        redirect('home');
     }
 }
