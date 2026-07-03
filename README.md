@@ -32,6 +32,12 @@ The application includes **7 main navigation links**, each leading to a dedicate
 You can direcly in the website create, modify and delete : **internships**, **companies**, **teachers**
 If you are not a **Student** you are allowed and able to access your account info and change your password.
 
+Some configurations are accessible to the Admin via the account dropdown menu. From there, you can update your school's name and city.
+
+> [!IMPORTANT]
+> The default school name is set to "!Missing information!".
+> This is completely normal; you simply need to configure it during your first setup.
+
 ## 💡 Requirements
 
 Like most projects, this application has a few system requirements necessary to run locally or in production.

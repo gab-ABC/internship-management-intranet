@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= e($title ?? 'Stages') ?> &middot; Stages Jean Rostand</title>
+    <title><?= e($title ?? 'Stages') ?> &middot; Stages <?= e($nom_etablissement) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
 
@@ -30,7 +30,6 @@
                 <li class="nav-item"><a class="nav-link" href="<?= url('entreprises') ?>">Entreprises</a></li>
                 <?php if (can_edit()): ?>
                     <li class="nav-item"><a class="nav-link" href="<?= url('profs') ?>">Professeurs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= url('stage_create') ?>">Ajouter un stage</a></li>
                 <?php endif; ?>
                 <?php if (is_admin()): ?>
                     <li class="nav-item"><a class="nav-link" href="<?= url('users') ?>">Utilisateurs</a></li>
