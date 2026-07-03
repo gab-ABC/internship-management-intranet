@@ -15,7 +15,12 @@ class Etablissement
 
     public static function setEtablissementName(string $nom): void
     {
-        Database::run('UPDATE etablissement SET nom = ? LIMIT 1', [$nom]);
+        $old = self::getEtablissementName();
+        if ($old === 'Aucun nom d\'établissement défini') {
+            Database::run('INSERT INTO etablissement (nom) VALUES (?)', [$nom]);
+        } else {
+            Database::run('UPDATE etablissement SET nom = ? LIMIT 1', [$nom]);
+        }
     }
 
     public static function getEtablissementCity():string
