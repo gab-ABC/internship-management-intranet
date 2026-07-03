@@ -151,6 +151,21 @@ class StageController extends Controller
         redirect('stages');
     }
 
+    public function destroyArray(): void
+    {
+        $this->authorize('admin', 'prof');
+        $ids = $_POST['stages'] ?? [];
+        if (!is_array($ids)) {
+            $ids = [];
+        }
+        $ids = array_map('intval', $ids);
+        if (!empty($ids)) {
+            Stage::deleteArray($ids);
+            flash('Stages supprimés.');
+        }
+        redirect('stages');
+    }
+
     /* ----------------------------------------------------------------- */
 
     private function resolveEntreprise(array $in): ?int

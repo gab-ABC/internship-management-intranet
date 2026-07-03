@@ -32,6 +32,7 @@ $router->add('stage_store',  'StageController', 'store',   ['admin', 'prof']);
 $router->add('stage_edit',   'StageController', 'edit',    ['admin', 'prof']);
 $router->add('stage_update', 'StageController', 'update',  ['admin', 'prof']);
 $router->add('stage_delete', 'StageController', 'destroy', ['admin', 'prof']);
+$router->add('stage_delete_array', 'StageController', 'destroyArray', ['admin', 'prof']);
 
 // --- Entreprises : gestion reservee a admin+prof ---
 $router->add('entreprises',       'EntrepriseController', 'index',   ['admin', 'prof', 'eleve']);

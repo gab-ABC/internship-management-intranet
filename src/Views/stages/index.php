@@ -8,6 +8,9 @@ $pdfQuery = http_build_query(array_merge(['p' => 'stages_pdf'], array_filter($fi
     <h1 class="h3 mb-0">Liste des stages</h1>
     <div class="d-flex gap-2 flex-wrap">
         <a href="index.php?<?= e($pdfQuery) ?>" class="btn btn-danger">Générer un PDF à partir des filtres sélectionnés</a>
+        <button id="btn-toggle-select" class="btn btn-warning" data-selecting="false">
+            Sélectionner des stages
+        </button>
         <?php if (can_edit()): ?>
             <a href="<?= url('stage_create') ?>" class="btn btn-primary">+ Ajouter un stage</a>
         <?php endif; ?>
@@ -82,10 +85,16 @@ $pdfQuery = http_build_query(array_merge(['p' => 'stages_pdf'], array_filter($fi
 
 <p class="text-muted small"><?= count($stages) ?> stage(s) trouvé(s).</p>
 
+<form method="post" action="<?= url('stage_delete_array') ?>" id="form-bulk-delete"
+      onsubmit="return confirm('Supprimer les stages sélectionnés ?');">
+    <?= \App\Core\Csrf::field() ?>
+</form>
+
 <div class="table-responsive">
     <table class="table table-sm table-striped table-hover align-middle bg-white text-nowrap">
         <thead class="table-dark">
             <tr>
+                <th class="text-center stage-checkbox"></th>
                 <th>Année</th>
                 <th>Étudiant</th>
                 <th>Entreprise</th>
@@ -102,11 +111,18 @@ $pdfQuery = http_build_query(array_merge(['p' => 'stages_pdf'], array_filter($fi
         </thead>
         <tbody>
         <?php if (empty($stages)): ?>
-            <tr><td colspan="10" class="text-center text-muted py-4">Aucun stage ne correspond à la recherche.</td></tr>
+            <?php $colCount = can_edit() ? 11 : 9; ?>
+            <tr><td colspan="<?= $colCount ?>" class="text-center text-muted py-4">Aucun stage ne correspond à la recherche.</td></tr>
         <?php endif; ?>
         <?php foreach ($stages as $s): ?>
             <?php $agg = $aggregates[(int) $s['ent_id']] ?? null; ?>
-            <tr>
+            <tr class="table-row">
+                <td class="text-center stage-checkbox">
+                    <input type="checkbox" class="btn-check" name="stages[]"
+                        id="stage-<?= e((string) $s['id']) ?>" value="<?= e((string) $s['id']) ?>"
+                        form="form-bulk-delete" autocomplete="off">
+                    <label class="btn btn-sm btn-outline-danger" for="stage-<?= e((string) $s['id']) ?>" aria-label="Sélectionner"></label>
+                </td>
                 <td><?= e((string) $s['annee']) ?></td>
                 <td>
                     <?= e(strtoupper($s['etudiant_nom']) . ' ' . $s['etudiant_prenom']) ?>
@@ -158,12 +174,12 @@ $pdfQuery = http_build_query(array_merge(['p' => 'stages_pdf'], array_filter($fi
                     <td class="small"><?= e($s['prof_nom'] ?? '') ?></td>
                     <td class="text-end text-nowrap">
                         <a href="<?= url('stage_edit') ?>&id=<?= (int) $s['id'] ?>"
-                           class="btn btn-sm btn-outline-primary" title="Modifier le stage">⚙️</a>
+                        class="btn btn-sm btn-outline-primary" title="Modifier le stage">⚙️</a>
                         <form method="post" action="<?= url('stage_delete') ?>" class="d-inline"
-                              onsubmit="return confirm('Supprimer ce stage ?');">
+                            onsubmit="return confirm('Supprimer ce stage ?');">
                             <?= \App\Core\Csrf::field() ?>
                             <input type="hidden" name="id" value="<?= (int) $s['id'] ?>">
-                            <button class="btn btn-sm btn-outline-danger" type="submit" title="Supprimer">&times;</button>
+                            <button class="btn btn-sm btn-outline-danger" aria-label="Supprimer" type="submit" title="Supprimer">&times;</button>
                         </form>
                     </td>
                 <?php endif; ?>
@@ -173,9 +189,21 @@ $pdfQuery = http_build_query(array_merge(['p' => 'stages_pdf'], array_filter($fi
     </table>
 </div>
 
+<div class="d-flex gap-2 mt-2 position-sticky bottom-0 bg-white py-2 border-top">
+    <button id="btn-select-all" class="btn btn-outline-secondary" style="display:none">
+        Tout sélectionner
+    </button>
+    <button type="submit" form="form-bulk-delete" id="btn-bulk-delete"
+            class="btn btn-danger" style="display:none">
+        Supprimer la sélection
+    </button>
+</div>
+
 <?php if (!can_edit()): ?>
     <p class="text-muted small">
         En tant qu'élève, vous consultez l'historique des stages. L'e-mail du tuteur est affiché,
         mais pas les numéros de téléphone.
     </p>
 <?php endif; ?>
+
+<script src="assets/js/can_select.js"></script>
