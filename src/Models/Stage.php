@@ -119,7 +119,18 @@ class Stage
 
     public static function delete(int $id): void
     {
-        Database::run('DELETE FROM stages WHERE id = ?', [$id]);
+        $etudiantId = Database::run('SELECT etudiant_id FROM stages WHERE id = ?', [$id])->fetchColumn();
+        if ($etudiantId !== false) {
+            Database::run('DELETE FROM etudiants WHERE id = ?', [$etudiantId]);
+            Database::run('DELETE FROM stages WHERE id = ?', [$id]);
+        }
+    }
+
+    public static function deleteArray(array $ids): void
+    {
+        foreach ($ids as $id) {
+            self::delete((int) $id);
+        }
     }
 
     /** Indique si un stage identique existe deja (meme etudiant/annee/entreprise). */
